@@ -1,0 +1,37 @@
+#Java classes
+*.class
+
+# Package files
+*.jar
+*.war
+*.ear
+
+# Maven
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionBackup
+pom.xml.next
+release.properties
+
+# IntelliJ IDEA
+*.iml
+.idea
+atlassian-ide-plugin.xml
+rebel.xml
+/out/
+.idea_modules/
+
+# Node a React
+.happypack
+npm-debug.log*
+node_modules/
+jspm_packages
+package-lock.json
+
+# Optional npm cache directory
+.npm
+
+# Generated files
+bin/
+/gen/
