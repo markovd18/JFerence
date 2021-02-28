@@ -6,6 +6,12 @@ server:
 
 spring:
   datasource:
-    url:  jdbc:mysql://127.0.0.1/vyv_jference
-    username: root
-    password:
+    url:  jdbc:postgresql://localhost:5432e/vyv_jference
+    username: postgres
+    password: mysecretpassword
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQL95Dialect
+    show-sql: false
+    hibernate:
+      ddl-auto: create
+    database: postgresql

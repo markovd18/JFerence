@@ -32,7 +32,7 @@ public class UzivatelDO implements SelfDirtinessTracker {
     @Column(nullable = false, length = 50)
     private String jmeno;
 
-    @Column(nullable = false, length = 50)
+    @Column(nullable = false, length = 50, unique = true)
     private String login;
 
     @Column(nullable = false, length = 60)
