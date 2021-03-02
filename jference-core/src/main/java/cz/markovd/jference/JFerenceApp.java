@@ -9,7 +9,7 @@ import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 
 
 @Configuration
-@EnableJpaRepositories(basePackageClasses = JFerenceApp.class)
+//@EnableJpaRepositories(basePackageClasses = JFerenceApp.class)
 @SpringBootApplication
 public class JFerenceApp {
 
@@ -17,9 +17,9 @@ public class JFerenceApp {
         SpringApplication.run(JFerenceApp.class, args);
     }
 
-    @Bean(name="entityManagerFactory")
-    public LocalSessionFactoryBean sessionFactory() {
-        return new LocalSessionFactoryBean();
-    }
+//    @Bean(name="entityManagerFactory")
+//    public LocalSessionFactoryBean sessionFactory() {
+//        return new LocalSessionFactoryBean();
+//    }
 
 }

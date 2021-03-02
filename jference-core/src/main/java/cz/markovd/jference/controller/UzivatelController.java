@@ -35,7 +35,7 @@ public class UzivatelController {
 
     @RequestMapping(value = "/registruj", method = RequestMethod.POST)
     public void registerUser(@RequestBody Uzivatel uzivatel) {
-        logger.info("Registrace uživatele: {}", uzivatel);
+        logger.info("Registrace uživatele: {}", uzivatel.getLogin());
         try {
             uzivatelService.registrujUzivatele(uzivatel);
         } catch (InvalidStateException e) {
@@ -50,6 +50,11 @@ public class UzivatelController {
     }
 
 //    public void updateUser(RequestBody Uz uziv)
+
+    /* *****************************
+            AUTOWIRING
+    ****************************
+    */
 
     @Autowired
     public void setUzivatelService(UzivatelService uzivatelService) {

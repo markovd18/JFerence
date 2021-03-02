@@ -79,6 +79,11 @@ public class UzivatelService {
         return null;
     }
 
+    /* *****************************
+                AUTOWIRING
+        ****************************
+     */
+
     @Autowired
     public void setPasswordEncryptor(PasswordEncryptor passwordEncryptor) {
         this.passwordEncryptor = passwordEncryptor;
