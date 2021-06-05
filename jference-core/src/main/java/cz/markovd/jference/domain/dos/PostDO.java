@@ -1,6 +1,6 @@
 package cz.markovd.jference.domain.dos;
 
-import cz.markovd.jference.domain.Uzivatel;
+import cz.markovd.jference.domain.User;
 import org.hibernate.bytecode.enhance.spi.CollectionTracker;
 import org.hibernate.engine.spi.SelfDirtinessTracker;
 
@@ -11,41 +11,40 @@ import java.util.Objects;
 import java.util.Set;
 
 @MappedSuperclass
-public class PrispevekDO implements SelfDirtinessTracker {
+public class PostDO implements SelfDirtinessTracker {
 
-    public static final String ID_PRISPEVEK = "id_prispevek";
+    public static final String ID_POST = "id_post";
 
-    public static final String DATUM = "datum";
+    public static final String DATE = "date";
 
-    public static final String ID_UZIVATEL = "id_uzivatel";
+    public static final String ID_USER = "id_user";
 
-    public static final String TITULEK = "titulek";
+    public static final String TITLE = "title";
 
     public static final String TEXT = "text";
 
-    public static final String SEKCE = "sekce";
+    public static final String SECTION = "section";
 
-    public static final String STAV = "stav";
+    public static final String STATE = "state";
 
-    public static final String CESTA = "cesta";
     @Id
     @GeneratedValue
     @Column(nullable = false)
-    private Integer idPrispevek;
+    private Integer idPost;
     @Column(length = 30)
-    private Date datum;
+    private Date date;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_uzivatel")
-    private Uzivatel uzivatel;
+    @JoinColumn(name = ID_USER)
+    private User user;
     @Column(nullable = false, length = 255)
-    private String titulek;
+    private String title;
     @Column(nullable = false, length = 1000)
     private String text;
     @Column(nullable = false, length = 20)
-    private EnumSekce sekce;
+    private EnumSection section;
     @Column(nullable = false, length = 20)
     @Enumerated(EnumType.STRING)
-    private EnumStav stav;
+    private EnumState state;
     /**
      * Seznam změn pro zápis.
      */
@@ -57,51 +56,51 @@ public class PrispevekDO implements SelfDirtinessTracker {
     @Transient
     private boolean $$_suspend;
 
-    protected PrispevekDO() {
+    protected PostDO() {
         //
     }
 
-    public PrispevekDO(Integer idPrispevek, Date datum, Uzivatel uzivatel, String titulek, String text, EnumSekce sekce, EnumStav stav) {
-        this.idPrispevek = idPrispevek;
-        this.datum = datum;
-        this.uzivatel = uzivatel;
-        this.titulek = titulek;
+    public PostDO(Integer idPost, Date date, User user, String title, String text, EnumSection section, EnumState state) {
+        this.idPost = idPost;
+        this.date = date;
+        this.user = user;
+        this.title = title;
         this.text = text;
-        this.sekce = sekce;
-        this.stav = stav;
+        this.section = section;
+        this.state = state;
     }
 
-    public Integer getIdPrispevek() {
-        return idPrispevek;
+    public Integer getIdPost() {
+        return idPost;
     }
 
-    public void setIdPrispevek(Integer idPrispevek) {
-        if (!Objects.equals(this.idPrispevek, idPrispevek)) $$_hibernate_trackChange(ID_PRISPEVEK);
-        this.idPrispevek = idPrispevek;
+    public void setIdPost(Integer idPost) {
+        if (!Objects.equals(this.idPost, idPost)) $$_hibernate_trackChange(ID_POST);
+        this.idPost = idPost;
     }
 
-    public Date getDatum() {
-        return datum;
+    public Date getDate() {
+        return date;
     }
 
-    public void setDatum(Date datum) {
-        this.datum = datum;
+    public void setDate(Date date) {
+        this.date = date;
     }
 
-    public Uzivatel getUzivatel() {
-        return uzivatel;
+    public User getUser() {
+        return user;
     }
 
-    public void setUzivatel(Uzivatel uzivatel) {
-        this.uzivatel = uzivatel;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public String getTitulek() {
-        return titulek;
+    public String getTitle() {
+        return title;
     }
 
-    public void setTitulek(String titulek) {
-        this.titulek = titulek;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getText() {
@@ -112,20 +111,20 @@ public class PrispevekDO implements SelfDirtinessTracker {
         this.text = text;
     }
 
-    public EnumSekce getSekce() {
-        return sekce;
+    public EnumSection getSection() {
+        return section;
     }
 
-    public void setSekce(EnumSekce sekce) {
-        this.sekce = sekce;
+    public void setSection(EnumSection section) {
+        this.section = section;
     }
 
-    public EnumStav getStav() {
-        return stav;
+    public EnumState getState() {
+        return state;
     }
 
-    public void setStav(EnumStav stav) {
-        this.stav = stav;
+    public void setState(EnumState state) {
+        this.state = state;
     }
 
     @Override
@@ -175,15 +174,15 @@ public class PrispevekDO implements SelfDirtinessTracker {
         return null;
     }
 
-    public enum EnumSekce {
+    public enum EnumSection {
         METALCORE,
         HARDCORE,
         DEATHCORE,
-        OSTATNI
+        OTHERS
     }
 
-    public enum EnumStav {
-        PUBLIKOVANO,
-        NEPUBLIKOVANO
+    public enum EnumState {
+        PUBLISHED,
+        UNPUBLISHED
     }
 }

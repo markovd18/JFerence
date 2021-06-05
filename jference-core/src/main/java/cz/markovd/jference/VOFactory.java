@@ -1,30 +1,30 @@
 package cz.markovd.jference;
 
-import cz.markovd.jference.controller.vo.EnumUzivatelPravo;
-import cz.markovd.jference.controller.vo.UzivatelVO;
-import cz.markovd.jference.domain.Uzivatel;
+import cz.markovd.jference.controller.vo.EnumUserRight;
+import cz.markovd.jference.controller.vo.UserVO;
+import cz.markovd.jference.domain.User;
 import org.springframework.stereotype.Component;
 
 /**
- * Továrna pro tvorbu VO
+ * Factory for creating VO's
  *
- * @author David Markov
+ * @author <a href="mailto:david.markov@marbes.cz">David Markov</a>
  * @since 28.2.2021
  */
 @Component
 public class VOFactory {
 
-    public UzivatelVO createUzivatelVO(final Uzivatel uzivatel) {
-        if (uzivatel == null) {
+    public UserVO createUserVO(final User user) {
+        if (user == null) {
             return null;
         }
 
-        UzivatelVO uzivatelVO = new UzivatelVO();
-        uzivatelVO.setJmeno(uzivatel.getJmeno());
-        uzivatelVO.setLogin(uzivatel.getLogin());
-        uzivatelVO.setEmail(uzivatelVO.getEmail());
-        uzivatelVO.setPravo(EnumUzivatelPravo.getValueOf(uzivatel.getPravo()));
+        UserVO userVO = new UserVO();
+        userVO.setName(user.getName());
+        userVO.setLogin(user.getLogin());
+        userVO.setEmail(userVO.getEmail());
+        userVO.setRight(EnumUserRight.getValueOf(user.getRight()));
 
-        return uzivatelVO;
+        return userVO;
     }
 }

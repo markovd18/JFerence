@@ -10,91 +10,91 @@ import java.util.Objects;
 import java.util.Set;
 
 @MappedSuperclass
-public class UzivatelDO implements SelfDirtinessTracker {
+public class UserDO implements SelfDirtinessTracker {
 
-    public static final String ID_UZIVATEL = "id_uzivatel";
+    public static final String ID_USER = "id_user";
 
-    public static final String JMENO = "jmeno";
+    public static final String NAME = "name";
 
     public static final String LOGIN = "login";
 
-    public static final String HESLO = "heslo";
+    public static final String PASSWORD = "password";
 
     public static final String EMAIL = "email";
 
-    public static final String PRAVO = "pravo";
+    public static final String RIGHT = "right";
 
     @Id
     @GeneratedValue
     @Column(nullable = false)
-    private Integer idUzivatel;
+    private Integer idUser;
 
     @Column(nullable = false, length = 50)
-    private String jmeno;
+    private String name;
 
     @Column(nullable = false, length = 50, unique = true)
     private String login;
 
     @Column(nullable = false, length = 60)
-    private String heslo;
+    private String password;
 
     @Column(nullable = false, length = 80)
     private String email;
 
     @Column(nullable = false, length = 20)
     @Enumerated(EnumType.STRING)
-    private EnumPravo pravo;
+    private EnumRight right;
     /**
-     * Seznam změn pro zápis.
+     * List of changes to write.
      */
     @Transient
     private Set<String> $$_changes;
     /**
-     * Pozastavení sledování změn.
+     * Suspend change tracking.
      */
     @Transient
     private boolean $$_suspend;
 
-    protected UzivatelDO() {
+    protected UserDO() {
     }
 
-    public UzivatelDO(Integer idUzivatel, String jmeno, String login, String heslo, String email, EnumPravo pravo) {
-        this.idUzivatel = idUzivatel;
-        this.jmeno = jmeno;
+    public UserDO(Integer isUser, String name, String login, String password, String email, EnumRight right) {
+        this.idUser = isUser;
+        this.name = name;
         this.login = login;
-        this.heslo = heslo;
+        this.password = password;
         this.email = email;
-        this.pravo = pravo;
+        this.right = right;
     }
 
-    public Integer getIdUzivatel() {
-        return idUzivatel;
+    public Integer getIdUser() {
+        return idUser;
     }
 
-    public void setIdUzivatel(Integer idUzivatel) {
-        if (!Objects.equals(this.idUzivatel, idUzivatel)) $$_hibernate_trackChange(ID_UZIVATEL);
-        this.idUzivatel = idUzivatel;
+    public void setIdUser(Integer idUzivatel) {
+        if (!Objects.equals(this.idUser, idUzivatel)) $$_hibernate_trackChange(ID_USER);
+        this.idUser = idUzivatel;
     }
 
     @Override
     public String toString() {
-        return "Uzivatel: idUzivatele=" + getIdUzivatel();
+        return "User: idUser=" + getIdUser();
     }
 
-    public String getJmeno() {
-        return jmeno;
+    public String getName() {
+        return name;
     }
 
-    public void setJmeno(String jmeno) {
-        if (jmeno != null) {
-            if (jmeno.length() == 0) {
-                jmeno = null;
-            } else if (jmeno.length() > 50) {
-                jmeno = jmeno.substring(0, 50);
+    public void setName(String name) {
+        if (name != null) {
+            if (name.length() == 0) {
+                name = null;
+            } else if (name.length() > 50) {
+                name = name.substring(0, 50);
             }
         }
-        if (!Objects.equals(this.jmeno, jmeno)) $$_hibernate_trackChange(JMENO);
-        this.jmeno = jmeno;
+        if (!Objects.equals(this.name, name)) $$_hibernate_trackChange(NAME);
+        this.name = name;
     }
 
     public String getLogin() {
@@ -113,21 +113,21 @@ public class UzivatelDO implements SelfDirtinessTracker {
         this.login = login;
     }
 
-    public String getHeslo() {
-        return heslo;
+    public String getPassword() {
+        return password;
     }
 
-    public void setHeslo(String heslo) {
-        if (heslo != null) {
-            if (heslo.length() == 0) {
-                heslo = null;
-            } else if (heslo.length() > 60) {
-                heslo = heslo.substring(0, 60);
+    public void setPassword(String password) {
+        if (password != null) {
+            if (password.length() == 0) {
+                password = null;
+            } else if (password.length() > 60) {
+                password = password.substring(0, 60);
             }
         }
 
-        if (!Objects.equals(this.heslo, heslo)) $$_hibernate_trackChange(HESLO);
-        this.heslo = heslo;
+        if (!Objects.equals(this.password, password)) $$_hibernate_trackChange(PASSWORD);
+        this.password = password;
     }
 
     public String getEmail() {
@@ -147,13 +147,13 @@ public class UzivatelDO implements SelfDirtinessTracker {
         this.email = email;
     }
 
-    public EnumPravo getPravo() {
-        return pravo;
+    public EnumRight getRight() {
+        return right;
     }
 
-    public void setPravo(EnumPravo pravo) {
-        if (!Objects.equals(this.pravo, pravo)) $$_hibernate_trackChange(PRAVO);
-        this.pravo = pravo;
+    public void setRight(EnumRight right) {
+        if (!Objects.equals(this.right, right)) $$_hibernate_trackChange(RIGHT);
+        this.right = right;
     }
 
     @Override
@@ -203,19 +203,19 @@ public class UzivatelDO implements SelfDirtinessTracker {
         return null;
     }
 
-    public enum EnumPravo {
+    public enum EnumRight {
         ADMIN(20),
-        RECENZENT(10),
-        AUTOR(5);
+        REVIEWER(10),
+        AUTHOR(5);
 
-        private final int vaha;
+        private final int weight;
 
-        EnumPravo(int vaha) {
-            this.vaha = vaha;
+        EnumRight(int weight) {
+            this.weight = weight;
         }
 
-        public int getVaha() {
-            return vaha;
+        public int getWeight() {
+            return weight;
         }
     }
 }
