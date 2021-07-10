@@ -1,0 +1,13 @@
+-- Test data, for development purposes only!
+-- This data is inserted into the local database once the server is booted up.
+
+-- Table user_account
+INSERT into user_account(id_user, email, login, name, password, right_level) VALUES (0, 'admin@test.cz', 'admin', 'admin', 'abcdefg', 'ADMIN');
+INSERT into user_account(id_user, email, login, name, password, right_level) VALUES (1, 'author@test.cz', 'author', 'author', 'anfibfui', 'AUTHOR');
+INSERT into user_account(id_user, email, login, name, password, right_level) VALUES (2, 'reviewer@test.cz', 'reviewer', 'reviewer', '123456', 'REVIEWER');
+
+-- Table post
+INSERT INTO post(id_post, section, state, text, title, id_user) VALUES (0, 'METALCORE', 'PUBLISHED', 'metalcore text', 'metalcore title', 0);
+INSERT INTO post(id_post, section, state, text, title, id_user) VALUES (1, 'DEATHCORE', 'UNPUBLISHED', 'deathcore text', 'deathcore title', 1);
+INSERT INTO post(id_post, section, state, text, title, id_user) VALUES (2, 'HARDCORE', 'PUBLISHED', 'hardcore text', 'hardcore title', 2);
+INSERT INTO post(id_post, section, state, text, title, id_user) VALUES (3, 'OTHERS', 'UNPUBLISHED', 'others text', 'others title', 0);

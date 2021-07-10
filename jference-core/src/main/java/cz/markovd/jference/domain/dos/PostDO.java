@@ -50,6 +50,7 @@ public class PostDO implements SelfDirtinessTracker {
     @Column(nullable = false, length = 1000)
     private String text;
     @Column(nullable = false, length = 20)
+    @Enumerated(EnumType.STRING)
     private EnumSection section;
     @Column(nullable = false, length = 20)
     @Enumerated(EnumType.STRING)
