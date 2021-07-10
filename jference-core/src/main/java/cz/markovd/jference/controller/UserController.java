@@ -37,7 +37,7 @@ public class UserController {
         }
     }
 
-    @RequestMapping(value = "/login")
+    @PostMapping(value = "/login")
     public UserVO loginUser(@RequestBody UserLoginVO userLogin) {
         logger.info("User {} logging in...", userLogin);
         return userService.loginUser(userLogin);

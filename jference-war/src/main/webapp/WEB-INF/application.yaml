@@ -6,12 +6,19 @@ server:
 
 spring:
   datasource:
-    url:  jdbc:postgresql://localhost:5432e/vyv_jference
+    url:  jdbc:postgresql://localhost:5432/jference-db
     username: postgres
     password: mysecretpassword
+    initialization-mode: always
+    platform: postgres
   jpa:
-    database-platform: org.hibernate.dialect.PostgreSQL95Dialect
-    show-sql: false
+    #    database-platform: org.hibernate.dialect.PostgreSQL95Dialect
+    show-sql: true
     hibernate:
-      ddl-auto: create
-    database: postgresql
+      ddl-auto: update
+    #    database: postgresql
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: true
