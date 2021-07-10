@@ -60,7 +60,7 @@ public class UserService {
         }
 
         User registeredUser = userRepository.findByLogin(userLogin.getLogin());
-        if (registeredUser.passwordMathes(passwordEncryptor.encryptPassword(userLogin.getPassword()))) {
+        if (registeredUser.passwordMatches(passwordEncryptor.encryptPassword(userLogin.getPassword()))) {
             return voFactory.createUserVO(registeredUser);
         }
 

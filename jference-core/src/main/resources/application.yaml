@@ -4,14 +4,21 @@ server:
   session:
     timeout: 3600
 
-#spring:
-#  datasource:
-#    url:  jdbc:postgresql://localhost:5432/vyv_jference
-#    username: postgres
-#    password: mysecretpassword
-#  jpa:
+spring:
+  datasource:
+    url:  jdbc:postgresql://localhost:5432/jference-db
+    username: postgres
+    password: mysecretpassword
+    initialization-mode: always
+    platform: postgres
+  jpa:
 #    database-platform: org.hibernate.dialect.PostgreSQL95Dialect
-#    show-sql: false
-#    hibernate:
-#      ddl-auto: create
+    show-sql: true
+    hibernate:
+      ddl-auto: update
 #    database: postgresql
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: true

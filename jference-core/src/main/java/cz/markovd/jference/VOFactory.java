@@ -23,7 +23,7 @@ public class VOFactory {
         userVO.setName(user.getName());
         userVO.setLogin(user.getLogin());
         userVO.setEmail(userVO.getEmail());
-        userVO.setRight(EnumUserRight.getValueOf(user.getRight()));
+        userVO.setRight(EnumUserRight.getValueOf(user.getRightLevel()));
 
         return userVO;
     }

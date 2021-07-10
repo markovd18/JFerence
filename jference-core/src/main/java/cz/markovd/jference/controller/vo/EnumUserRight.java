@@ -17,11 +17,11 @@ public enum EnumUserRight {
         return weight;
     }
 
-    public static EnumUserRight getValueOf(final UserDO.EnumRight enumRight) {
-        if (enumRight == null) {
+    public static EnumUserRight getValueOf(final UserDO.EnumRightLevel enumRightLevel) {
+        if (enumRightLevel == null) {
             return null;
         }
 
-        return valueOf(enumRight.name());
+        return valueOf(enumRightLevel.name());
     }
 }

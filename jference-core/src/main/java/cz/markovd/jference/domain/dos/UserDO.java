@@ -4,7 +4,13 @@ package cz.markovd.jference.domain.dos;
 import org.hibernate.bytecode.enhance.spi.CollectionTracker;
 import org.hibernate.engine.spi.SelfDirtinessTracker;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
+import javax.persistence.Transient;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -43,7 +49,7 @@ public class UserDO implements SelfDirtinessTracker {
 
     @Column(nullable = false, length = 20)
     @Enumerated(EnumType.STRING)
-    private EnumRight right;
+    private EnumRightLevel rightLevel;
     /**
      * List of changes to write.
      */
@@ -58,13 +64,13 @@ public class UserDO implements SelfDirtinessTracker {
     protected UserDO() {
     }
 
-    public UserDO(Integer isUser, String name, String login, String password, String email, EnumRight right) {
+    public UserDO(Integer isUser, String name, String login, String password, String email, EnumRightLevel rightLevel) {
         this.idUser = isUser;
         this.name = name;
         this.login = login;
         this.password = password;
         this.email = email;
-        this.right = right;
+        this.rightLevel = rightLevel;
     }
 
     public Integer getIdUser() {
@@ -147,13 +153,13 @@ public class UserDO implements SelfDirtinessTracker {
         this.email = email;
     }
 
-    public EnumRight getRight() {
-        return right;
+    public EnumRightLevel getRightLevel() {
+        return rightLevel;
     }
 
-    public void setRight(EnumRight right) {
-        if (!Objects.equals(this.right, right)) $$_hibernate_trackChange(RIGHT);
-        this.right = right;
+    public void setRightLevel(EnumRightLevel right) {
+        if (!Objects.equals(this.rightLevel, right)) $$_hibernate_trackChange(RIGHT);
+        this.rightLevel = right;
     }
 
     @Override
@@ -203,14 +209,14 @@ public class UserDO implements SelfDirtinessTracker {
         return null;
     }
 
-    public enum EnumRight {
+    public enum EnumRightLevel {
         ADMIN(20),
         REVIEWER(10),
         AUTHOR(5);
 
         private final int weight;
 
-        EnumRight(int weight) {
+        EnumRightLevel(int weight) {
             this.weight = weight;
         }
 

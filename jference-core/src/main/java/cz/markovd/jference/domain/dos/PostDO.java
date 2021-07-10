@@ -4,7 +4,16 @@ import cz.markovd.jference.domain.User;
 import org.hibernate.bytecode.enhance.spi.CollectionTracker;
 import org.hibernate.engine.spi.SelfDirtinessTracker;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.MappedSuperclass;
+import javax.persistence.Transient;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Objects;
@@ -46,12 +55,12 @@ public class PostDO implements SelfDirtinessTracker {
     @Enumerated(EnumType.STRING)
     private EnumState state;
     /**
-     * Seznam změn pro zápis.
+     * Set of changes to commit.
      */
     @Transient
     private Set<String> $$_changes;
     /**
-     * Pozastavení sledování změn.
+     * Suspension of change tracking.
      */
     @Transient
     private boolean $$_suspend;
