@@ -3,10 +3,10 @@ package cz.markovd.jference;
 /**
  * Exception to indicate an invalid state of the application to perform requested task.
  *
- * @author <a href="mailto:david.markov@marbes.cz">David Markov</a>
+ * @author <a href="mailto:Markov.David@seznam.cz">David Markov</a>
  * @since 28.2.2021
  */
-public class InvalidStateException extends Exception {
+public class InvalidStateException extends RuntimeException {
     public InvalidStateException() {
     }
 

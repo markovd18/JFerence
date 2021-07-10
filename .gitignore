@@ -35,3 +35,6 @@ package-lock.json
 # Generated files
 bin/
 /gen/
+
+# Development only files
+data-*.sql

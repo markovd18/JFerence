@@ -1,5 +1,8 @@
 -- Test data, for development purposes only!
 -- This data is inserted into the local database once the server is booted up.
+-- For the data to be inserted into database, remove the ".dev" file extension.
+-- Data has to be inserted only once. If the server is booted up twice with ".dev" extension removed,
+-- second boot will end up in failure due to database constraints (PK) violation.
 
 -- Table user_account
 INSERT into user_account(id_user, email, login, name, password, right_level) VALUES (0, 'admin@test.cz', 'admin', 'admin', 'abcdefg', 'ADMIN');

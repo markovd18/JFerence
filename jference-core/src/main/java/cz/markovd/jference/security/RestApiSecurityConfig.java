@@ -6,7 +6,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 /**
- * @author <a href="mailto:david.markov@marbes.cz">David Markov</a>
+ * @author <a href="mailto:Markov.David@seznam.cz">David Markov</a>
  * @since 05.06.21
  */
 @Configuration

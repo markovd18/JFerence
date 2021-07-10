@@ -3,7 +3,6 @@ server:
   url: http://127.0.0.1:8080
   session:
     timeout: 3600
-
 spring:
   datasource:
     url:  jdbc:postgresql://localhost:5432/jference-db
@@ -22,3 +21,7 @@ spring:
         jdbc:
           lob:
             non_contextual_creation: true
+logging:
+  level:
+    cz:
+      markovd: debug

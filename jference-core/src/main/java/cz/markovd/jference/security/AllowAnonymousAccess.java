@@ -6,12 +6,12 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Annotation, allowing access to REST API only to logged in users.
+ * Annotation allowing access to REST API to everyone.
  *
  * @author <a href="mailto:Markov.David@seznam.cz">David Markov</a>
- * @since 05.06.21
+ * @since 10.07.21
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.TYPE, ElementType.METHOD})
-public @interface AllowLoggedInAccessOnly {
+public @interface AllowAnonymousAccess {
 }

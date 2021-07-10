@@ -16,18 +16,15 @@ import org.springframework.util.Assert;
 /**
  * Service for working with users.
  *
- * @author <a href="mailto:david.markov@marbes.cz">David Markov</a>
+ * @author <a href="mailto:Markov.David@seznam.cz">David Markov</a>
  * @since 10.7. 2020
  */
 @Service
 public class UserService {
 
-    private static final Logger logger = LoggerFactory.getLogger(UserService.class);
-
+    private final Logger logger = LoggerFactory.getLogger(getClass());
     private PasswordEncryptor passwordEncryptor;
-
     private UserRepository userRepository;
-
     private VOFactory voFactory;
 
 

@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 /**
  * Factory for creating VO's
  *
- * @author <a href="mailto:david.markov@marbes.cz">David Markov</a>
+ * @author <a href="mailto:Markov.David@seznam.cz">David Markov</a>
  * @since 28.2.2021
  */
 @Component

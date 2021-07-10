@@ -28,22 +28,37 @@ public class UserDO implements SelfDirtinessTracker {
 
     public static final String EMAIL = "email";
 
-    public static final String RIGHT = "right";
+    public static final String RIGHT_LEVEL = "rightLevel";
 
+    /**
+     * Unique ID of the user. Serves as a Private key of the database entity.
+     */
     @Id
     @GeneratedValue
     @Column(nullable = false)
     private Integer idUser;
 
+    /**
+     * User's real name. Used only in account detail.
+     */
     @Column(nullable = false, length = 50)
     private String name;
 
+    /**
+     * User's unique nickname. Widely used in comment sections and private messaging.
+     */
     @Column(nullable = false, length = 50, unique = true)
     private String login;
 
+    /**
+     * Password of the user. Content is 60B hash of the original password.
+     */
     @Column(nullable = false, length = 60)
     private String password;
 
+    /**
+     * User's email address.
+     */
     @Column(nullable = false, length = 80)
     private String email;
 
@@ -158,7 +173,7 @@ public class UserDO implements SelfDirtinessTracker {
     }
 
     public void setRightLevel(EnumRightLevel right) {
-        if (!Objects.equals(this.rightLevel, right)) $$_hibernate_trackChange(RIGHT);
+        if (!Objects.equals(this.rightLevel, right)) $$_hibernate_trackChange(RIGHT_LEVEL);
         this.rightLevel = right;
     }
 
@@ -209,11 +224,30 @@ public class UserDO implements SelfDirtinessTracker {
         return null;
     }
 
+    /**
+     * Level of rights that user has. {@link #ADMIN} can perform any operation - can create new post, review one
+     * or delete them. {@link #REVIEWER} can create new posts and review posts, that are assigned to him.
+     * {@link #AUTHOR} can only create new post, but has to wait for it to be reviewed and accepted.
+     */
     public enum EnumRightLevel {
+        /**
+         * Admin can create new post, review one or delete them. He can also assign new post to the {@link #REVIEWER}
+         * for a review.
+         */
         ADMIN(20),
+        /**
+         * Reviewer can create new post and review those that are assigned to him by {@link #ADMIN}.
+         */
         REVIEWER(10),
+        /**
+         * Basic authorization level - can only create new post and wait for it to be reviewed by {@link #REVIEWER}
+         * and accepted by {@link #ADMIN}.
+         */
         AUTHOR(5);
 
+        /**
+         * Integral weight of the authorization level. Higher weight means higher rights.
+         */
         private final int weight;
 
         EnumRightLevel(int weight) {
