@@ -5,6 +5,7 @@ import cz.markovd.jference.VOFactory;
 import cz.markovd.jference.controller.vo.UserLoginVO;
 import cz.markovd.jference.controller.vo.UserVO;
 import cz.markovd.jference.domain.User;
+import cz.markovd.jference.security.AllowAnonymousAccess;
 import cz.markovd.jference.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/api/user")
+@AllowAnonymousAccess
 public class UserController {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
