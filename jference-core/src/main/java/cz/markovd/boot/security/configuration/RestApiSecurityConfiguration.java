@@ -9,10 +9,10 @@ import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.AnnotatedElementUtils;
-import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfiguration;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.servlet.util.matcher.MvcRequestMatcher;
 import org.springframework.util.ClassUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,12 +36,11 @@ import java.util.stream.Collectors;
  * @since 10.07.21
  */
 @Configuration
-@Order(RestApiSecurityConfiguration.ORDER)
-public class RestApiSecurityConfiguration extends ResourceServerConfiguration {
+@EnableWebSecurity
+public class RestApiSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
-    static final int ORDER = 1050;
     private ConfigurableListableBeanFactory beanFactory;
     private HandlerMappingIntrospector introspector;
 
@@ -174,10 +173,6 @@ public class RestApiSecurityConfiguration extends ResourceServerConfiguration {
                 .collect(Collectors.toList());
     }
 
-    @Override
-    public int getOrder() {
-        return ORDER;
-    }
 
     /*
             **********************************
