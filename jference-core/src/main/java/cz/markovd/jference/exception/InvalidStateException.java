@@ -1,4 +1,4 @@
-package cz.markovd.jference;
+package cz.markovd.jference.exception;
 
 /**
  * Exception to indicate an invalid state of the application to perform requested task.

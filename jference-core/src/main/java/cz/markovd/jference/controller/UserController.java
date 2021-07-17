@@ -1,10 +1,10 @@
 package cz.markovd.jference.controller;
 
-import cz.markovd.jference.InvalidStateException;
 import cz.markovd.jference.VOFactory;
 import cz.markovd.jference.controller.vo.UserLoginVO;
 import cz.markovd.jference.controller.vo.UserVO;
 import cz.markovd.jference.domain.User;
+import cz.markovd.jference.exception.InvalidStateException;
 import cz.markovd.jference.security.AllowAnonymousAccess;
 import cz.markovd.jference.service.UserService;
 import org.slf4j.Logger;

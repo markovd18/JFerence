@@ -1,10 +1,11 @@
 package cz.markovd.jference.service;
 
-import cz.markovd.jference.InvalidStateException;
 import cz.markovd.jference.VOFactory;
 import cz.markovd.jference.controller.vo.UserLoginVO;
 import cz.markovd.jference.controller.vo.UserVO;
 import cz.markovd.jference.domain.User;
+import cz.markovd.jference.exception.InvalidStateException;
+import cz.markovd.jference.exception.SystemException;
 import cz.markovd.jference.repository.UserRepository;
 import org.jasypt.util.password.PasswordEncryptor;
 import org.slf4j.Logger;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
 import javax.transaction.Transactional;
+import java.util.Optional;
 
 /**
  * Service for working with users.
@@ -47,6 +49,21 @@ public class UserService {
         user.setPassword(encryptedPassword);
 
         return userRepository.save(user);
+    }
+
+    /**
+     * Returns user with given ID.
+     *
+     * @param idUser user ID
+     * @return user DO
+     */
+    public User getUserById(final Integer idUser) {
+        Optional<User> user = userRepository.findById(idUser);
+        if (user.isEmpty()) {
+            throw new SystemException("User with id " + idUser + " does not exist!");
+        }
+
+        return user.get();
     }
 
     /**
