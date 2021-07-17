@@ -1,5 +1,6 @@
 package cz.markovd.boot.security.configuration;
 
+import cz.markovd.boot.security.filter.AnonymousAccessFilter;
 import cz.markovd.jference.security.AllowAdminAccessOnly;
 import cz.markovd.jference.security.AllowAnonymousAccess;
 import org.slf4j.Logger;
@@ -7,12 +8,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.AnnotatedElementUtils;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.access.ExceptionTranslationFilter;
 import org.springframework.security.web.servlet.util.matcher.MvcRequestMatcher;
 import org.springframework.util.ClassUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -50,6 +53,7 @@ public class RestApiSecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
         http.anonymous().disable();
 
+        http.addFilterAfter(anonymousAccessFilter(), ExceptionTranslationFilter.class);
         http.authorizeRequests()
                 .requestMatchers(getUrls(AllowAnonymousAccess.class)).access("authenticated || anonymous")
                 .requestMatchers(getUrls(AllowAdminAccessOnly.class)).hasRole("ADMIN")
@@ -171,6 +175,11 @@ public class RestApiSecurityConfiguration extends WebSecurityConfigurerAdapter {
         return Arrays.stream(requestMethods)
                 .map(requestMethod -> HttpMethod.resolve(requestMethod.name()))
                 .collect(Collectors.toList());
+    }
+
+    @Bean
+    public AnonymousAccessFilter anonymousAccessFilter() {
+        return new AnonymousAccessFilter();
     }
 
 
