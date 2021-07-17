@@ -13,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
+import javax.transaction.Transactional;
+
 /**
  * Service for working with users.
  *
@@ -33,6 +35,7 @@ public class UserService {
      * @param user user to register
      * @throws InvalidStateException when the user is already registered
      */
+    @Transactional(Transactional.TxType.MANDATORY)
     public User registerUser(final User user) throws InvalidStateException {
         Assert.notNull(user, "Given user may not be null!");
 

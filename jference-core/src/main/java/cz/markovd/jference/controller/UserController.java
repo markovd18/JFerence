@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.transaction.Transactional;
+
 /**
  * Controller pro working with user requests.
  *
@@ -39,6 +41,7 @@ public class UserController {
      * @param user user to register
      * @return VO of registered user
      */
+    @Transactional
     @PostMapping(value = "/register")
     public UserVO registerUser(@RequestBody final User user) {
         logger.info("Registering user: {}", user.getLogin());
@@ -46,7 +49,7 @@ public class UserController {
             return voFactory.createUserVO(userService.registerUser(user));
         } catch (InvalidStateException e) {
             logger.error("Error while registering user {}", user, e);
-            throw new InvalidStateException("Error while registering new user", e);
+            throw e;
         }
     }
 
